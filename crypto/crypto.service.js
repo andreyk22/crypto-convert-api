@@ -2,21 +2,21 @@
 const request = require('request');
 const requestPromise = require('request-promise');
 
-function cryptoConvert(params, cb) {
-  const ccApi = 'https://min-api.cryptocompare.com/data/price?fsym=' + params.currency + '&tsyms=EUR';
+function cryptoConvert(query, cb) {
+  const ccApi = 'https://min-api.cryptocompare.com/data/price?fsym=' + query.currency + '&tsyms=EUR';
 
   return request(ccApi, (error, response, body) => {
     const apiRes = JSON.parse(body);
     if (apiRes.Response === 'Error') {
       return cb(apiRes.Message);
     } else {
-      return cb(null, apiRes.EUR * params.amount);
+      return cb(null, apiRes.EUR * query.amount);
     }
   });
 }
 
-function cryptoConvertPromise(params) {
-  const ccApi = 'https://min-api.cryptocompare.com/data/price?fsym=' + params.currency + '&tsyms=EUR';
+function cryptoConvertPromise(query) {
+  const ccApi = 'https://min-api.cryptocompare.com/data/price?fsym=' + query.currency + '&tsyms=EUR';
   const options = {
     uri: ccApi,
     headers: {
@@ -30,7 +30,7 @@ function cryptoConvertPromise(params) {
           return Promise.reject(data.Message);
         }
 
-        return Promise.resolve(data.EUR * params.amount);
+        return Promise.resolve(data.EUR * query.amount);
       })
 }
 

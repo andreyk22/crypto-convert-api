@@ -11,8 +11,8 @@ const start = async () => {
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(bodyParser.json());
 
-  app.post('/convert/:currency/:amount', cryptoController.cryptoConvert);
-  app.post('/convert/promise/:currency/:amount', cryptoController.cryptoConvertPromise);
+  app.get('/convert', cryptoController.cryptoConvert);
+  app.get('/convert/promise', cryptoController.cryptoConvertPromise);
 
   app.use(function(req, res) {
     res.status(404).send({ url: req.originalUrl + " not found" });

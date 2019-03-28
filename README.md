@@ -18,9 +18,13 @@ Clone:
 
 ``` git clone https://github.com/andreyk22/crypto-convert-api.git```
 
-Run:
+Install:
 
 ```npm install```
+
+Run:
+
+```npm start```
 
 ## Dependencies
 

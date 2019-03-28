@@ -25,7 +25,7 @@ Promises and request-promise lib are used for second one.
 
 - [request](https://www.npmjs.com/package/request)
 
-- [request-promise](rhttps://www.npmjs.com/package/request-promise)
+- [request-promise](https://www.npmjs.com/package/request-promise)
 
 - [jest](https://www.npmjs.com/package/jest)
 

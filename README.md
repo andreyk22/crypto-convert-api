@@ -14,6 +14,11 @@ There are 2 API endpoints:
 
 ## Installing
 
+Clone:
+``` git clone https://github.com/andreyk22/crypto-convert-api.git```
+
+Run:
+
 ```npm install```
 
 ## Dependencies

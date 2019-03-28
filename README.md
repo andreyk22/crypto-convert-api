@@ -6,11 +6,11 @@ There are 2 API endpoints:
 
 - Callbacks and request lib are used for first one.
 
-- ```http://localhost:3000/convert?currency=ETH&amount=1```
+ ```http://localhost:3000/convert?currency=ETH&amount=1```
 
 - Promises and request-promise lib are used for second one.
 
-- ```http://localhost:3000/convert/promise?currency=ETH&amount=1```
+ ```http://localhost:3000/convert/promise?currency=ETH&amount=1```
 
 ## Installing
 

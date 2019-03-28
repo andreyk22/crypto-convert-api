@@ -17,16 +17,16 @@ Promises and request-promise lib are used for second one.
 
 ## Dependencies
 
-*[https://www.npmjs.com/package/nodemon](nodemon)
+- [https://www.npmjs.com/package/nodemon](nodemon)
 
-*[https://www.npmjs.com/package/express](express)
+- [https://www.npmjs.com/package/express](express)
 
-*[https://www.npmjs.com/package/body-parser](body-parser)
+- [https://www.npmjs.com/package/body-parser](body-parser)
 
-*[https://www.npmjs.com/package/request](request)
+- [https://www.npmjs.com/package/request](request)
 
-*[https://www.npmjs.com/package/request-promise](request-promise)
+- [https://www.npmjs.com/package/request-promise](request-promise)
 
-*[https://www.npmjs.com/package/jest](jest)
+- [https://www.npmjs.com/package/jest](jest)
 
-*[https://www.npmjs.com/package/supertest](supertest)
+- [https://www.npmjs.com/package/supertest](supertest)

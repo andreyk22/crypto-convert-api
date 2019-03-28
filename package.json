@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
+    "test": "jest --watchAll",
     "dev": "nodemon"
   },
   "author": "",
@@ -17,6 +18,8 @@
     "request-promise": "^4.2.4"
   },
   "devDependencies": {
-    "nodemon": "^1.18.10"
+    "jest": "^24.5.0",
+    "nodemon": "^1.18.10",
+    "supertest": "^4.0.2"
   }
 }

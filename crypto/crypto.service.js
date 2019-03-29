@@ -2,10 +2,13 @@
 const request = require('request');
 const requestPromise = require('request-promise');
 
-function cryptoConvert(query, cb) {
+const fs = require('fs');
 
-  if(!query.currency) {
-    return cb('Currency parameter is required.')
+// WITH CALLBACKS
+const cryptoConvert = (query, cb) => {
+
+  if (!query.currency) {
+    return cb('Currency parameter is required.');
   }
   if (!query.amount) {
     return cb('Amount parameter is required.')
@@ -13,7 +16,7 @@ function cryptoConvert(query, cb) {
 
   const ccApi = 'https://min-api.cryptocompare.com/data/price?fsym=' + query.currency + '&tsyms=EUR';
 
-  if (isNaN(query.amount)){
+  if (isNaN(query.amount)) {
     return cb('Amount value must be a number.');
   }
   return request(ccApi, (error, response, body) => {
@@ -25,11 +28,12 @@ function cryptoConvert(query, cb) {
       return cb(null, apiRes.EUR * query.amount);
     }
   });
-}
+};
 
-function cryptoConvertPromise(query) {
+// WITH PROMISES
+const cryptoConvertPromise = (query) => {
 
-  if(!query.currency) {
+  if (!query.currency) {
     return Promise.reject('Currency parameter is required.')
   }
   if (!query.amount) {
@@ -50,14 +54,110 @@ function cryptoConvertPromise(query) {
         if (data.Response === 'Error') {
           return Promise.reject(data.Message);
         }
-        if (isNaN(query.amount)){
+        if (isNaN(query.amount)) {
           return Promise.reject('Amount value must be a number');
         }
         return Promise.resolve(data.EUR * query.amount);
       })
 }
 
+// WITH PROMISES
+const logCurrentValue = () => {
+
+  const interval = 60 * 1000;
+
+  setInterval(() => {
+    const query = {
+      currency: 'ETH',
+      amount: 1
+    };
+    cryptoConvertPromise(query)
+        .then((res) => {
+          const dateTime = new Date().toISOString();
+          const logData = {
+            price: res,
+            date: dateTime
+          };
+          fs.readFile('logs.json', (err, data) => {
+            if (err) {
+              throw err;
+            } else {
+              const json = JSON.parse(data);
+              json['logs'].push(logData);
+              json['total']++;
+              const logs = JSON.stringify(json, null, 2);
+              fs.writeFile('logs.json', logs, (err, res) => {
+                if (err) {
+                  throw err;
+                }
+                console.log('Saved with promise. Every 60s')
+              });
+            }
+          })
+        });
+  }, interval);
+}
+
+// WITH CALLBACKS
+const logCurrentValueCb = () => {
+
+  const interval = 25 * 1000;
+
+  setInterval(() => {
+    const query = {
+      currency: 'ETH',
+      amount: 1
+    };
+    cryptoConvert(query, (err, res) => {
+      if (err) {
+        throw err;
+      }
+      console.log(res)
+      const dateTime = new Date().toISOString();
+      const logData = {
+        priceCB: res,
+        dateCB: dateTime
+      };
+      fs.readFile('logs.json', (err, data) => {
+        if (err) {
+          console.log(err);
+        } else {
+          const json = JSON.parse(data);
+          json['logs'].push(logData);
+          json['total']++;
+          const logs = JSON.stringify(json, null, 2);
+          fs.writeFile('logs.json', logs, (err, res) => {
+            if (err) {
+              throw err;
+            }
+            console.log('Saved with callback. Every 25s')
+          });
+        }
+      })
+    })
+  }, interval);
+};
+
+const getLogs = (callback) => {
+  fs.readFile('logs.json', function (err, content) {
+    if (err) {
+      return callback(err)
+    }
+    const json = JSON.parse(content);
+    callback(null, json)
+  })
+}
+
+const paginate = (array, page_size, page_number) => {
+  --page_number;
+  return array.slice(page_number * page_size, (page_number + 1) * page_size);
+}
+
 module.exports = {
   cryptoConvert,
-  cryptoConvertPromise
+  cryptoConvertPromise,
+  logCurrentValue,
+  logCurrentValueCb,
+  getLogs,
+  paginate
 };

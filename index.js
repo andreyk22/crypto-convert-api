@@ -13,12 +13,16 @@ const start = async () => {
 
   app.get('/convert', cryptoController.cryptoConvert);
   app.get('/convert/promise', cryptoController.cryptoConvertPromise);
+  app.get('/logs', cryptoController.getLogs);
 
-  app.use(function(req, res) {
+  app.use((req, res) => {
     res.status(404).send({ url: req.originalUrl + " not found" });
   });
 
-  app.listen(port, () => console.log("Listening on port: " + port));
+  cryptoController.logCurrentValue();
+  cryptoController.logCurrentValueCb();
+
+  return app.listen(port, () => console.log("Listening on port: " + port));
 };
 
 start();

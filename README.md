@@ -2,7 +2,6 @@
 Simple node js api for converting cryptocurrencies to EUR.
 
 ## Usage
-There are 2 API endpoints:
 
 - Callbacks and request lib are used for first one.
 
@@ -11,6 +10,22 @@ There are 2 API endpoints:
 - Promises and request-promise lib are used for second one.
 
  ```http://localhost:3000/convert/promise?currency=ETH&amount=1```
+ 
+- ETH value logs feature. 
+    
+    Logging function written using callbacks logs every 25s, and function written using promises logs every 60s
+    
+   * Get all logs:
+
+    ```http://localhost:3000/logs```
+    
+   * Get limited number of logs
+    
+    ```http://localhost:3000/logs?limit=2```
+    
+   * Get limited numbers of logs by starting page
+    
+    ```http://localhost:3000/logs?limit=5&start=1```
 
 ## Installing
 

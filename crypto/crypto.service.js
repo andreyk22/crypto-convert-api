@@ -166,7 +166,7 @@ const getLogs = (query, callback) => {
     if (query.start && query.limit) {
       callback(null, paginate(json['logs'], query.limit, query.start))
     } else if (query.limit) {
-      callback(null, paginate(json['logs'].slice(0, query.limit)))
+      callback(null, (json['logs'].slice(0, query.limit)))
     } else if (query.start) {
       callback(null, paginate(json['logs'], 5, query.start))
     } else {

@@ -8,7 +8,7 @@ const port = process.env.PORT || 3000;
 
 const start = async () => {
 
-  app.use(bodyParser.urlencoded({ extended: true }));
+  app.use(bodyParser.urlencoded({extended: true}));
   app.use(bodyParser.json());
 
   app.get('/convert', cryptoController.cryptoConvert);
@@ -16,7 +16,7 @@ const start = async () => {
   app.get('/logs', cryptoController.getLogs);
 
   app.use((req, res) => {
-    res.status(404).send({ url: req.originalUrl + " not found" });
+    res.status(404).send({url: req.originalUrl + " not found"});
   });
 
   cryptoController.logCurrentValue();

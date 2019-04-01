@@ -21,26 +21,33 @@ const logCurrentValueCb = () => {
   cryptoService.logCurrentValueCb();
 };
 const getLogs = (req, res) => {
-  cryptoService.getLogs((err, content) => {
-    if (req.query.start && req.query.limit) {
-      if (isNaN(req.query.limit) || isNaN(req.query.start)) {
-        return res.json({error : 'Query values must be numbers'});
+  if (req.query.start && req.query.limit) {
+    if (isNaN(req.query.limit) || isNaN(req.query.start)) {
+      if (isNaN(req.query.limit) && isNaN(req.query.start)) {
+        return res.json({error: 'Query values must be numbers'})
       }
-      return res.json(cryptoService.paginate(content['logs'], req.query.limit, req.query.start))
-    }
-    if (req.query.limit) {
       if (isNaN(req.query.limit)) {
-        return res.json({error : 'Limit value must be a number'});
+        return res.json({error: 'Limit value must be a number'});
       }
-      return res.json(content['logs'].slice(0, req.query.limit));
-    }
-    if (req.query.start) {
       if (isNaN(req.query.start)) {
         return res.json({error: 'Start value must be a number'});
       }
-      return res.json(cryptoService.paginate(content['logs'], 5, req.query.start))
     }
-
+  }
+  if (req.query.limit) {
+    if (isNaN(req.query.limit)) {
+      return res.json({error: 'Limit value must be a number'});
+    }
+  }
+  if (req.query.start) {
+    if (isNaN(req.query.start)) {
+      return res.json({error: 'Start value must be a number'});
+    }
+  }
+  cryptoService.getLogs(req.query, (err, content) => {
+    if (err) {
+      return err;
+    }
     return res.json(content);
   })
 }

@@ -60,11 +60,10 @@ const cryptoConvertPromise = (query) => {
         return Promise.resolve(data.EUR * query.amount);
       })
 }
-
 // WITH PROMISES
 const logCurrentValue = () => {
 
-  const interval = 60 * 1000;
+  const interval = 3 * 1000;
 
   setInterval(() => {
     const query = {
@@ -82,16 +81,36 @@ const logCurrentValue = () => {
             if (err) {
               throw err;
             } else {
-              const json = JSON.parse(data);
-              json['logs'].push(logData);
-              json['total']++;
-              const logs = JSON.stringify(json, null, 2);
-              fs.writeFile('logs.json', logs, (err, res) => {
-                if (err) {
-                  throw err;
+              const currentJson = () => {
+                const cJson = JSON.parse(JSON.stringify(Buffer.from(data).toString()));
+                return cJson;
+              }
+              if (!currentJson().hasOwnProperty(0)) {
+                console.log('Empty file, pushing json template into it.')
+                const template = {
+                  total: 0,
+                  logs: []
                 }
-                console.log('Saved with promise. Every 60s')
-              });
+                const tmp = JSON.stringify(template, null, 2)
+                fs.writeFile('logs.json', tmp, (err, res) => {
+                  if (err) {
+                    throw err;
+                  }
+                  console.log('Saved template')
+                });
+              }
+              fs.readFile('logs.json', (err, data) => {
+                const json = JSON.parse(data);
+                json['logs'].push(logData);
+                json['total']++;
+                const logs = JSON.stringify(json, null, 2);
+                fs.writeFile('logs.json', logs, (err, res) => {
+                  if (err) {
+                    throw err;
+                  }
+                  console.log('Saved with ETH Value with promise. Every 3s')
+                });
+              })
             }
           })
         });
@@ -101,7 +120,7 @@ const logCurrentValue = () => {
 // WITH CALLBACKS
 const logCurrentValueCb = () => {
 
-  const interval = 25 * 1000;
+  const interval = 10 * 1000;
 
   setInterval(() => {
     const query = {
@@ -112,7 +131,7 @@ const logCurrentValueCb = () => {
       if (err) {
         throw err;
       }
-      console.log(res)
+      // console.log(res)
       const dateTime = new Date().toISOString();
       const logData = {
         priceCB: res,
@@ -122,29 +141,59 @@ const logCurrentValueCb = () => {
         if (err) {
           console.log(err);
         } else {
-          const json = JSON.parse(data);
-          json['logs'].push(logData);
-          json['total']++;
-          const logs = JSON.stringify(json, null, 2);
-          fs.writeFile('logs.json', logs, (err, res) => {
-            if (err) {
-              throw err;
+          const currentJson = () => {
+            const cJson = JSON.parse(JSON.stringify(Buffer.from(data).toString()));
+            return cJson;
+          }
+          if (!currentJson().hasOwnProperty(0)) {
+            console.log('Empty file, pushing json template into it.')
+            const template = {
+              total: 0,
+              logs: []
             }
-            console.log('Saved with callback. Every 25s')
-          });
+            const tmp = JSON.stringify(template, null, 2)
+            fs.writeFile('logs.json', tmp, (err, res) => {
+              if (err) {
+                throw err;
+              }
+              console.log('Saved template')
+            });
+          }
+          fs.readFile('logs.json', (err, data) => {
+            const json = JSON.parse(data);
+            json['logs'].push(logData);
+            json['total']++;
+            const logs = JSON.stringify(json, null, 2);
+            fs.writeFile('logs.json', logs, (err, res) => {
+              if (err) {
+                throw err;
+              }
+              console.log('Saved with ETH Value with callback. Every 10s')
+            });
+          })
         }
       })
+
     })
   }, interval);
 };
 
-const getLogs = (callback) => {
+const getLogs = (query, callback) => {
   fs.readFile('logs.json', function (err, content) {
     if (err) {
       return callback(err)
     }
     const json = JSON.parse(content);
-    callback(null, json)
+
+    if (query.start && query.limit) {
+      callback(null, paginate(json['logs'], query.limit, query.start))
+    } else if (query.limit) {
+      callback(null, paginate(json['logs'].slice(0, query.limit)))
+    } else if (query.start) {
+      callback(null, paginate(json['logs'], 5, query.start))
+    } else {
+      callback(null, json)
+    }
   })
 }
 
@@ -158,6 +207,5 @@ module.exports = {
   cryptoConvertPromise,
   logCurrentValue,
   logCurrentValueCb,
-  getLogs,
-  paginate
+  getLogs
 };

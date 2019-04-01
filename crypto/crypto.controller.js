@@ -1,6 +1,12 @@
 const cryptoService = require("./crypto.service");
 
 const cryptoConvert = (req, res) => {
+  if (!req.query.currency) {
+    return res.json({error: 'Currency parameter is required.'});
+  }
+  if(!req.query.amount || typeof parseInt(req.query.amount) !== 'number') {
+    return res.json({error: 'Amount parameter is required and must be a number'});
+  }
   cryptoService.cryptoConvert(req.query, function (err, response) {
     if (err) {
       return res.json({'error:': err}).status(400);
@@ -10,6 +16,12 @@ const cryptoConvert = (req, res) => {
 };
 
 const cryptoConvertPromise = (req, res) => {
+  if (!req.query.currency) {
+    return res.json({error: 'Currency parameter is required.'});
+  }
+  if(!req.query.amount || typeof parseInt(req.query.amount) !== 'number') {
+    return res.json({error: 'Amount parameter is required and must be a number'});
+  }
   cryptoService.cryptoConvertPromise(req.query)
       .then(response => res.json({'price': response}).status(200))
       .catch(err => res.json({'error': err}).status(400));
@@ -21,28 +33,11 @@ const logCurrentValueCb = () => {
   cryptoService.logCurrentValueCb();
 };
 const getLogs = (req, res) => {
-  if (req.query.start && req.query.limit) {
-    if (isNaN(req.query.limit) || isNaN(req.query.start)) {
-      if (isNaN(req.query.limit) && isNaN(req.query.start)) {
-        return res.json({error: 'Query values must be numbers'})
-      }
-      if (isNaN(req.query.limit)) {
-        return res.json({error: 'Limit value must be a number'});
-      }
-      if (isNaN(req.query.start)) {
-        return res.json({error: 'Start value must be a number'});
-      }
-    }
+  if (req.query.start && typeof parseInt(req.query.start) !== 'number') {
+    return res.json({error: 'Query values must be numbers'});
   }
-  if (req.query.limit) {
-    if (isNaN(req.query.limit)) {
-      return res.json({error: 'Limit value must be a number'});
-    }
-  }
-  if (req.query.start) {
-    if (isNaN(req.query.start)) {
-      return res.json({error: 'Start value must be a number'});
-    }
+  if (req.query.limit && typeof parseInt(req.query.limit) !== 'number') {
+    return res.json({error: 'Query values must be numbers'});
   }
   cryptoService.getLogs(req.query, (err, content) => {
     if (err) {
@@ -50,7 +45,7 @@ const getLogs = (req, res) => {
     }
     return res.json(content);
   })
-}
+};
 
 
 module.exports = {

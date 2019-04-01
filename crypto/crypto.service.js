@@ -7,18 +7,8 @@ const fs = require('fs');
 // WITH CALLBACKS
 const cryptoConvert = (query, cb) => {
 
-  if (!query.currency) {
-    return cb('Currency parameter is required.');
-  }
-  if (!query.amount) {
-    return cb('Amount parameter is required.')
-  }
-
   const ccApi = 'https://min-api.cryptocompare.com/data/price?fsym=' + query.currency + '&tsyms=EUR';
 
-  if (isNaN(query.amount)) {
-    return cb('Amount value must be a number.');
-  }
   return request(ccApi, (error, response, body) => {
     const apiRes = JSON.parse(body);
 
@@ -33,13 +23,6 @@ const cryptoConvert = (query, cb) => {
 // WITH PROMISES
 const cryptoConvertPromise = (query) => {
 
-  if (!query.currency) {
-    return Promise.reject('Currency parameter is required.')
-  }
-  if (!query.amount) {
-    return Promise.reject('Amount parameter is required.')
-  }
-
   const ccApi = 'https://min-api.cryptocompare.com/data/price?fsym=' + query.currency + '&tsyms=EUR';
 
   const options = {
@@ -53,9 +36,6 @@ const cryptoConvertPromise = (query) => {
       .then((data) => {
         if (data.Response === 'Error') {
           return Promise.reject(data.Message);
-        }
-        if (isNaN(query.amount)) {
-          return Promise.reject('Amount value must be a number');
         }
         return Promise.resolve(data.EUR * query.amount);
       })
@@ -116,7 +96,6 @@ const logCurrentValue = () => {
         });
   }, interval);
 }
-
 // WITH CALLBACKS
 const logCurrentValueCb = () => {
 
@@ -173,7 +152,6 @@ const logCurrentValueCb = () => {
           })
         }
       })
-
     })
   }, interval);
 };

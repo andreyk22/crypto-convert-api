@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9249140-5e0d-442e-ab95-7dcf285250ee" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/crypto/crypto.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/crypto/crypto.controller.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/crypto/crypto.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/crypto/crypto.service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs.json" beforeDir="false" afterPath="$PROJECT_DIR$/logs.json" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -22,35 +19,24 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/crypto/crypto.controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="22" column="30" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
-              <folding>
-                <element signature="e#88#292#0" />
-                <element signature="e#691#1496#0" />
-              </folding>
+            <state relative-caret-position="345">
+              <caret line="23" column="3" selection-start-line="23" selection-start-column="3" selection-end-line="23" selection-end-column="3" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/logs.json">
-          <provider selected="true" editor-type-id="text-editor" />
+        <entry file="file://$PROJECT_DIR$/crypto/crypto.service.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1455">
+              <caret line="97" column="1" selection-end-line="189" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/crypto/crypto.service.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="62" column="16" lean-forward="true" selection-start-line="62" selection-start-column="16" selection-end-line="62" selection-end-column="16" />
-              <folding>
-                <element signature="e#184#765#0" />
-                <element signature="e#825#1557#0" />
-                <element signature="e#1606#2498#0" />
-                <element signature="e#2550#3992#0" />
-                <element signature="e#4019#4191#0" />
-              </folding>
-            </state>
-          </provider>
+        <entry file="file://$PROJECT_DIR$/logs.json">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -74,10 +60,10 @@
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/tests/crypto.test.js" />
         <option value="$PROJECT_DIR$/tests/logs.test.js" />
-        <option value="$PROJECT_DIR$/crypto/crypto.controller.js" />
-        <option value="$PROJECT_DIR$/crypto/crypto.service.js" />
         <option value="$PROJECT_DIR$/index.js" />
+        <option value="$PROJECT_DIR$/crypto/crypto.controller.js" />
         <option value="$PROJECT_DIR$/logs.json" />
+        <option value="$PROJECT_DIR$/crypto/crypto.service.js" />
       </list>
     </option>
   </component>
@@ -100,11 +86,6 @@
             <path>
               <item name="crypto-convert-api" type="b2602c69:ProjectViewProjectNode" />
               <item name="crypto-convert-api" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="crypto-convert-api" type="b2602c69:ProjectViewProjectNode" />
-              <item name="crypto-convert-api" type="462c0819:PsiDirectoryNode" />
-              <item name="crypto" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -198,12 +179,12 @@
       <workItem from="1553761331700" duration="22621000" />
       <workItem from="1553843162839" duration="18746000" />
       <workItem from="1553868053802" duration="3582000" />
-      <workItem from="1554099164271" duration="17650000" />
+      <workItem from="1554099164271" duration="20565000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="93871000" />
+    <option name="totallyTimeSpent" value="96786000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="27" width="1853" height="1053" extended-state="6" />
@@ -311,33 +292,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/crypto/crypto.service.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="62" column="16" lean-forward="true" selection-start-line="62" selection-start-column="16" selection-end-line="62" selection-end-column="16" />
-          <folding>
-            <element signature="e#184#765#0" />
-            <element signature="e#825#1557#0" />
-            <element signature="e#1606#2498#0" />
-            <element signature="e#2550#3992#0" />
-            <element signature="e#4019#4191#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/crypto/crypto.controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="22" column="30" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
-          <folding>
-            <element signature="e#88#292#0" />
-            <element signature="e#691#1496#0" />
-          </folding>
+        <state relative-caret-position="345">
+          <caret line="23" column="3" selection-start-line="23" selection-start-column="3" selection-end-line="23" selection-end-column="3" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/logs.json">
       <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/crypto/crypto.service.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1455">
+          <caret line="97" column="1" selection-end-line="189" />
+        </state>
+      </provider>
     </entry>
   </component>
 </project>

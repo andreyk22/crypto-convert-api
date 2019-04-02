@@ -80,7 +80,7 @@ const logCurrentValuePromise = () => {
                 if (err) {
                   throw err;
                 }
-                console.log('Logging with promises.')
+                console.log('Logging with promises every 3s.')
               });
             }
           })
@@ -91,14 +91,14 @@ const logCurrentValuePromise = () => {
 // WITH CALLBACKS
 const logCurrentValueCb = () => {
 
-  const interval = 2 * 1000;
+  const interval = 10 * 1000;
 
   setInterval(() => {
     const query = {
       currency: 'ETH',
       amount: 1
     };
-    cryptoConvert(query, (err, res) => {
+    cryptoConvertCb(query, (err, res) => {
       if (err) {
         throw err;
       }
@@ -129,7 +129,7 @@ const logCurrentValueCb = () => {
             if (err) {
               throw err;
             }
-            console.log('Logging with callbacks')
+            console.log('Logging with callbacks every 10s')
           });
         }
       })
@@ -142,17 +142,24 @@ const getLogs = (query, callback) => {
     if (err) {
       return callback(err)
     }
-    const json = JSON.parse(content);
-
-    if (query.start && query.limit) {
-      callback(null, paginate(json['logs'], query.limit, query.start))
-    } else if (query.limit) {
-      callback(null, paginate(json['logs'], query.limit, 1))
-    } else if (query.start) {
-      callback(null, paginate(json['logs'], 5, query.start))
-    } else {
-      callback(null, json)
+    const cJson = Buffer.from(content).toString();
+    const parsed = (cJson && JSON.parse(cJson)) || {};
+    if(!parsed || !parsed.logs) {
+      return callback(null, {total: 0, logs:[]});
     }
+    else {
+      const json = JSON.parse(content);
+      if (query.start && query.limit) {
+        callback(null, paginate(json['logs'], query.limit, query.start))
+      } else if (query.limit) {
+        callback(null, paginate(json['logs'], query.limit, 1))
+      } else if (query.start) {
+        callback(null, paginate(json['logs'], 5, query.start))
+      } else {
+        callback(null, json)
+      }
+    }
+
   })
 };
 

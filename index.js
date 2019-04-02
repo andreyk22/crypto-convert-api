@@ -11,16 +11,16 @@ const start = async () => {
   app.use(bodyParser.urlencoded({extended: true}));
   app.use(bodyParser.json());
 
-  app.get('/convert', cryptoController.cryptoConvert);
+  app.get('/convert', cryptoController.cryptoConvertCb);
   app.get('/convert/promise', cryptoController.cryptoConvertPromise);
   app.get('/logs', cryptoController.getLogs);
 
   app.use((req, res) => {
     res.status(404).send({url: req.originalUrl + " not found"});
   });
-
-  cryptoController.logCurrentValuePromise();
   cryptoController.logCurrentValueCb();
+  cryptoController.logCurrentValuePromise();
+
 
   return app.listen(port, () => console.log("Listening on port: " + port));
 };

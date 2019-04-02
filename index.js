@@ -19,7 +19,7 @@ const start = async () => {
     res.status(404).send({url: req.originalUrl + " not found"});
   });
 
-  cryptoController.logCurrentValue();
+ cryptoController.logCurrentValue();
   cryptoController.logCurrentValueCb();
 
   return app.listen(port, () => console.log("Listening on port: " + port));

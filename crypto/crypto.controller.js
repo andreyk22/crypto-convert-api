@@ -4,7 +4,7 @@ const cryptoConvert = (req, res) => {
   if (!req.query.currency) {
     return res.json({error: 'Currency parameter is required.'});
   }
-  if(!req.query.amount || typeof parseInt(req.query.amount) !== 'number') {
+  if(!req.query.amount || isNaN(req.query.amount) !== 'number') {
     return res.json({error: 'Amount parameter is required and must be a number'});
   }
   cryptoService.cryptoConvert(req.query, function (err, response) {
@@ -19,24 +19,27 @@ const cryptoConvertPromise = (req, res) => {
   if (!req.query.currency) {
     return res.json({error: 'Currency parameter is required.'});
   }
-  if(!req.query.amount || typeof parseInt(req.query.amount) !== 'number') {
+  if(!req.query.amount || isNaN(req.query.amount) !== 'number') {
     return res.json({error: 'Amount parameter is required and must be a number'});
   }
   cryptoService.cryptoConvertPromise(req.query)
       .then(response => res.json({'price': response}).status(200))
       .catch(err => res.json({'error': err}).status(400));
 };
+
 const logCurrentValue = () => {
   cryptoService.logCurrentValue();
 };
+
 const logCurrentValueCb = () => {
   cryptoService.logCurrentValueCb();
 };
+
 const getLogs = (req, res) => {
-  if (req.query.start && typeof parseInt(req.query.start) !== 'number') {
+  if (req.query.start && isNaN(req.query.start)) {
     return res.json({error: 'Query values must be numbers'});
   }
-  if (req.query.limit && typeof parseInt(req.query.limit) !== 'number') {
+  if (req.query.limit && isNaN(req.query.limit)) {
     return res.json({error: 'Query values must be numbers'});
   }
   cryptoService.getLogs(req.query, (err, content) => {
@@ -46,7 +49,6 @@ const getLogs = (req, res) => {
     return res.json(content);
   })
 };
-
 
 module.exports = {
   cryptoConvert,

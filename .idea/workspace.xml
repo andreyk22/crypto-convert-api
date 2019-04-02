@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9249140-5e0d-442e-ab95-7dcf285250ee" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/crypto/crypto.service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/crypto/crypto.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/crypto/crypto.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/crypto/crypto.service.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/crypto.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/crypto.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/logs.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/logs.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/crypto/crypto.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/crypto/crypto.service.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/crypto/logs.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/crypto/logs.txt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -44,8 +38,17 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/crypto/crypto.service.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1305">
-              <caret line="33" column="28" lean-forward="true" selection-start-line="33" selection-start-column="28" selection-end-line="33" selection-end-column="28" />
+            <state relative-caret-position="451">
+              <caret line="156" column="30" selection-start-line="156" selection-start-column="30" selection-end-line="156" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/crypto/logs.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="10" column="37" lean-forward="true" selection-start-line="10" selection-start-column="37" selection-end-line="10" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -94,8 +97,8 @@
         <option value="$PROJECT_DIR$/tests/logs.test.js" />
         <option value="$PROJECT_DIR$/src/crypto/crypto.controller.js" />
         <option value="$PROJECT_DIR$/.editorconfig" />
-        <option value="$PROJECT_DIR$/src/crypto/crypto.service.js" />
         <option value="$PROJECT_DIR$/src/crypto/logs.txt" />
+        <option value="$PROJECT_DIR$/src/crypto/crypto.service.js" />
       </list>
     </option>
   </component>
@@ -386,28 +389,38 @@
       <workItem from="1553868053802" duration="3582000" />
       <workItem from="1554099164271" duration="27538000" />
       <workItem from="1554130784189" duration="578000" />
-      <workItem from="1554185216074" duration="25369000" />
+      <workItem from="1554185216074" duration="25890000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="129706000" />
+    <option name="totallyTimeSpent" value="130227000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="27" width="1853" height="1053" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24972677" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="REST Client" weight="0.4108527" />
-      <window_info anchor="bottom" id="TypeScript" />
+      <window_info anchor="bottom" id="TypeScript" weight="0.32890365" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32890365" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32890365" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39977852" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32890365" />
       <window_info anchor="bottom" id="Docker" order="7" weight="0.08527132" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32890365" />
       <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.49945354" visible="true" weight="0.27906978" />
@@ -536,9 +549,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/crypto/logs.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/crypto/crypto.controller.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -546,10 +556,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/crypto/logs.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="37" lean-forward="true" selection-start-line="10" selection-start-column="37" selection-end-line="10" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/crypto/crypto.service.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1305">
-          <caret line="33" column="28" lean-forward="true" selection-start-line="33" selection-start-column="28" selection-end-line="33" selection-end-column="28" />
+        <state relative-caret-position="451">
+          <caret line="156" column="30" selection-start-line="156" selection-start-column="30" selection-end-line="156" selection-end-column="30" />
         </state>
       </provider>
     </entry>

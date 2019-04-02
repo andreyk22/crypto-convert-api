@@ -91,7 +91,7 @@ const logCurrentValuePromise = () => {
 const logCurrentValueCb = () => {
 
 	const interval = 2 * 1000;
-	const filePath = path.normalize(__dirname + '/' + 'logs.txt');
+	const filePath = path.normalize(path.resolve(__dirname, 'logs.txt'));
 
 	setInterval(() => {
 		const query = {
@@ -125,7 +125,8 @@ const logCurrentValueCb = () => {
  * It uses paginate function
  */
 const getLogs = (query, callback) => {
-	const filePath = path.normalize(__dirname + '/' + 'logs.txt');
+	const filePath = path.normalize(path.resolve(__dirname, 'logs.txt'));
+	console.log(filePath)
 
 	fs.readFile(filePath, (err, content) => {
 		if (err) {

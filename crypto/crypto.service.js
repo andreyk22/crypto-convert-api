@@ -5,7 +5,7 @@ const requestPromise = require('request-promise');
 const fs = require('fs');
 
 // WITH CALLBACKS
-const cryptoConvert = (query, cb) => {
+const cryptoConvertCb = (query, cb) => {
 
   const ccApi = 'https://min-api.cryptocompare.com/data/price?fsym=' + query.currency + '&tsyms=EUR';
 
@@ -42,7 +42,7 @@ const cryptoConvertPromise = (query) => {
 };
 
 // WITH PROMISES
-const logCurrentValue = () => {
+const logCurrentValuePromise = () => {
 
   const interval = 3 * 1000;
 
@@ -162,9 +162,9 @@ const paginate = (array, page_size, page_number) => {
 };
 
 module.exports = {
-  cryptoConvert,
+  cryptoConvertCb,
   cryptoConvertPromise,
-  logCurrentValue,
+  logCurrentValuePromise,
   logCurrentValueCb,
   getLogs
 };

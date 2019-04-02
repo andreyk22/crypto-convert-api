@@ -1,13 +1,13 @@
 const cryptoService = require("./crypto.service");
 
-const cryptoConvert = (req, res) => {
+const cryptoConvertCb = (req, res) => {
   if (!req.query.currency) {
     return res.json({error: 'Currency parameter is required.'});
   }
-  if(!req.query.amount || isNaN(req.query.amount) !== 'number') {
+  if (!req.query.amount || isNaN(req.query.amount) !== 'number') {
     return res.json({error: 'Amount parameter is required and must be a number'});
   }
-  cryptoService.cryptoConvert(req.query, function (err, response) {
+  cryptoService.cryptoConvertCb(req.query, function (err, response) {
     if (err) {
       return res.json({'error:': err}).status(400);
     }
@@ -19,7 +19,7 @@ const cryptoConvertPromise = (req, res) => {
   if (!req.query.currency) {
     return res.json({error: 'Currency parameter is required.'});
   }
-  if(!req.query.amount || isNaN(req.query.amount) !== 'number') {
+  if (!req.query.amount || isNaN(req.query.amount) !== 'number') {
     return res.json({error: 'Amount parameter is required and must be a number'});
   }
   cryptoService.cryptoConvertPromise(req.query)
@@ -27,8 +27,8 @@ const cryptoConvertPromise = (req, res) => {
       .catch(err => res.json({'error': err}).status(400));
 };
 
-const logCurrentValue = () => {
-  cryptoService.logCurrentValue();
+const logCurrentValuePromise = () => {
+  cryptoService.logCurrentValuePromise();
 };
 
 const logCurrentValueCb = () => {
@@ -51,9 +51,9 @@ const getLogs = (req, res) => {
 };
 
 module.exports = {
-  cryptoConvert,
+  cryptoConvertCb,
   cryptoConvertPromise,
-  logCurrentValue,
+  logCurrentValuePromise,
   logCurrentValueCb,
   getLogs
 };

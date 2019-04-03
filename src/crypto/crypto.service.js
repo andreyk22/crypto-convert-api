@@ -1,8 +1,12 @@
 const request = require('request');
 const path = require('path');
 const requestPromise = require('request-promise');
-
 const fs = require('fs');
+
+const query = {
+	currency: 'ETH',
+	amount: 1
+};
 
 /**
  * Function with callbacks which gets
@@ -10,7 +14,6 @@ const fs = require('fs');
  * It uses cryptocompare api.
  */
 const cryptoConvertCb = (query, cb) => {
-
 	const url = `https://min-api.cryptocompare.com/data/price?fsym=${query.currency}&tsyms=EUR`;
 
 	return request(url, (error, response, body) => {
@@ -30,7 +33,6 @@ const cryptoConvertCb = (query, cb) => {
  * It uses cryptocompare api.
  */
 const cryptoConvertPromise = (query) => {
-
 	const url = `https://min-api.cryptocompare.com/data/price?fsym=${query.currency}&tsyms=EUR`;
 
 	const options = {
@@ -54,70 +56,17 @@ const cryptoConvertPromise = (query) => {
  * current value of ETH in Euros along with current date and time.
  * It logs to logs.txt file.
  */
-const logCurrentValuePromise = () => {
-
-	const interval = 5 * 1000;
-	const filePath = path.normalize(__dirname + '/' + 'logs.txt');
-
-	setInterval(() => {
-		const query = {
-			currency: 'ETH',
-			amount: 1
-		};
-
-		cryptoConvertPromise(query)
-			.then((res) => {
-				const dateTime = new Date().toISOString();
-				const logData = {
-					price: res,
-					date: dateTime
-				};
-
-				fs.appendFile(filePath, JSON.stringify(logData) + '\n', (err, data) => {
-					if (err) {
-						throw err;
-					}
-					console.log('logging with promises')
-				});
-			});
-	}, interval);
-};
+const logCurrentValuePromise = () =>
+	setInterval(() => cryptoConvertPromise(query)
+			.then((res) => appendToFile(null, res))
+			.catch(appendToFile), 5 * 1000);
 
 /**
  * Function with callbacks that logs every 2s
  * current value of ETH in Euros along with current date and time.
  * It logs to logs.txt file.
  */
-const logCurrentValueCb = () => {
-
-	const interval = 2 * 1000;
-	const filePath = path.normalize(path.resolve(__dirname, 'logs.txt'));
-
-	setInterval(() => {
-		const query = {
-			currency: 'ETH',
-			amount: 1
-		};
-
-		cryptoConvertCb(query, (err, res) => {
-			if (err) {
-				throw err;
-			}
-
-			const logData = {
-				priceCB: res,
-				dateCB: new Date().toISOString()
-			};
-
-			fs.appendFile(filePath, JSON.stringify(logData) + '\n', (err, data) => {
-				if (err) {
-					throw err;
-				}
-				console.log('logging with cb')
-			});
-		})
-	}, interval);
-};
+const logCurrentValueCb = () => setInterval(() => cryptoConvertCb(query, appendToFile), 2 * 1000);
 
 /**
  * Function that returns logs to JSON
@@ -126,7 +75,6 @@ const logCurrentValueCb = () => {
  */
 const getLogs = (query, callback) => {
 	const filePath = path.normalize(path.resolve(__dirname, 'logs.txt'));
-	console.log(filePath)
 
 	fs.readFile(filePath, (err, content) => {
 		if (err) {
@@ -145,22 +93,43 @@ const getLogs = (query, callback) => {
 			return callback(null, logs);
 		}
 
-		return callback(null,
-			paginate(
-				logs.logs,
-				isNaN(query.limit) ? 3 : query.limit,
-				isNaN(query.start) ? 1 : query.start))
+		return callback(null, paginate(logs.logs, query.limit, query.start))
 	})
 };
+
+/**
+ * Function that actually appendToFile
+ * and its called in logCurrentValuePromise and logCurrentValueCb
+ * It logs to logs.txt file.
+ */
+const appendToFile = (err, res) => {
+	const filePath = path.normalize(path.resolve(__dirname, 'logs.txt'));
+
+	if (err) {
+		console.warn(err.message);
+		return;
+	}
+
+	const logData = {
+		price: res,
+		date: new Date().toISOString()
+	};
+
+	fs.appendFile(filePath, JSON.stringify(logData) + '\n', (err, data) => {
+		if (err) {
+			console.warn(err.message);
+			return;
+		}
+		console.info('logging')
+	});
+}
 
 /**
  * Simple helper function thats used in getLogs
  * to return logs based on query params.
  */
-const paginate = (array, page_size, page_number) => {
-	--page_number;
-	return array.slice(page_number * page_size, (page_number + 1) * page_size);
-};
+const paginate = (array, page_size = 5, page_number = 0) =>
+	array.slice((page_number - 1) * page_size, page_number * page_size);
 
 module.exports = {
 	cryptoConvertCb,

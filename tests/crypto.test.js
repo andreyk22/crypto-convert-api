@@ -13,6 +13,7 @@ describe('GET /convert - Callbacks - request lib', () => {
 		expect(response.text).toContain('There is no data for the symbol mockETH .');
 	});
 });
+
 describe('GET /convert - Callbacks - request lib', () => {
 	test('Amount is not number. Test should fail GET /convert', async () => {
 		const response = await request(server)
@@ -22,6 +23,7 @@ describe('GET /convert - Callbacks - request lib', () => {
 		expect(response.text).toContain('Amount value must be a number');
 	});
 });
+
 describe('GET /convert - Callbacks - request lib', () => {
 	test('Currency is required. Test should fail GET /convert', async () => {
 		const response = await request(server)
@@ -31,6 +33,7 @@ describe('GET /convert - Callbacks - request lib', () => {
 		expect(response.text).toContain('Currency parameter is required.');
 	});
 });
+
 describe('GET /convert - Callbacks - request lib', () => {
 	test('Amount is required. Test should fail GET /convert', async () => {
 		const response = await request(server)
@@ -40,6 +43,7 @@ describe('GET /convert - Callbacks - request lib', () => {
 		expect(response.text).toContain('Amount parameter is required.');
 	});
 });
+
 describe('GET /convert - Callbacks - request lib', () => {
 	test('Test should convert crypto GET /convert', async () => {
 		const response = await request(server)
@@ -60,6 +64,7 @@ describe('GET /convert/promise - Promises - request-promise lib', () => {
 		expect(response.text).toContain('There is no data for the symbol mockETH .');
 	});
 });
+
 describe('GET /convert/promise - Promises - request-promise lib', () => {
 	test('Amount is not number. Test should fail GET /convert/promise', async () => {
 		const response = await request(server)
@@ -69,6 +74,7 @@ describe('GET /convert/promise - Promises - request-promise lib', () => {
 		expect(response.text).toContain('Amount value must be a number');
 	});
 });
+
 describe('GET /convert/promise - Promises - request-promise lib', () => {
 	test('Currency is required. Test should fail GET /convert/promise', async () => {
 		const response = await request(server)
@@ -78,6 +84,7 @@ describe('GET /convert/promise - Promises - request-promise lib', () => {
 		expect(response.text).toContain('Currency parameter is required.');
 	});
 });
+
 describe('GET /convert/promise - Promises - request-promise lib', () => {
 	test('Amount is required. Test should fail GET /convert/promise', async () => {
 		const response = await request(server)
@@ -87,6 +94,7 @@ describe('GET /convert/promise - Promises - request-promise lib', () => {
 		expect(response.text).toContain('Amount parameter is required.');
 	});
 });
+
 describe('GET /convert/promise - Promises - request-promise lib', () => {
 	test('Test should convert crypto GET /convert/promise', async () => {
 		const response = await request(server)

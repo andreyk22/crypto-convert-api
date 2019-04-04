@@ -2,11 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9249140-5e0d-442e-ab95-7dcf285250ee" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/crypto/crypto.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/crypto/crypto.controller.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/crypto/crypto.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/crypto/crypto.service.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/crypto/logs.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/crypto/logs.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/crypto.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/crypto.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/logs.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/tests/logs.test.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -19,12 +22,17 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/crypto/crypto.controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="30" column="56" lean-forward="true" selection-start-line="30" selection-start-column="56" selection-end-line="30" selection-end-column="56" />
+            <state relative-caret-position="75">
+              <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
+              <folding>
+                <element signature="e#90#512#0" />
+                <element signature="e#558#972#0" />
+                <element signature="e#1005#1154#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -32,8 +40,30 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/crypto/crypto.service.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="46">
-              <caret line="112" column="19" lean-forward="true" selection-start-line="112" selection-start-column="19" selection-end-line="112" selection-end-column="19" />
+            <state relative-caret-position="306">
+              <caret line="63" column="2" lean-forward="true" selection-start-line="63" selection-start-column="2" selection-end-line="63" selection-end-column="2" />
+              <folding>
+                <element signature="e#309#348#0" />
+                <element signature="e#378#413#0" />
+                <element signature="e#430#462#0" />
+                <element signature="e#632#950#0" />
+                <element signature="e#1120#1510#0" />
+                <element signature="e#1630#1994#0" />
+                <element signature="e#2987#3426#0" />
+                <element signature="e#3896#3989#0" />
+                <element signature="e#4093#4485#0" />
+                <element signature="e#4013#4123#0" />
+                <element signature="e#4247#4487#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
             </state>
           </provider>
         </entry>
@@ -49,10 +79,20 @@
     <findStrings>
       <find>ccApi</find>
       <find>local</find>
-      <find>console.log</find>
       <find>cryptoconvert</find>
       <find>filePath</find>
       <find>function</find>
+      <find>await</find>
+      <find>getas</find>
+      <find>promise</find>
+      <find>console.log(r</find>
+      <find>console.log(</find>
+      <find>err.message</find>
+      <find>console.log(res</find>
+      <find>getAndCheckValue</find>
+      <find>console.log</find>
+      <find>fs.stat</find>
+      <find>append</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -70,12 +110,12 @@
         <option value="$PROJECT_DIR$/crypto/crypto.controller.js" />
         <option value="$PROJECT_DIR$/crypto/crypto.service.js" />
         <option value="$PROJECT_DIR$/crypto/logs.txt" />
-        <option value="$PROJECT_DIR$/index.js" />
-        <option value="$PROJECT_DIR$/src/crypto/crypto.controller.js" />
         <option value="$PROJECT_DIR$/.editorconfig" />
         <option value="$PROJECT_DIR$/tests/logs.test.js" />
         <option value="$PROJECT_DIR$/tests/crypto.test.js" />
+        <option value="$PROJECT_DIR$/index.js" />
         <option value="$PROJECT_DIR$/src/crypto/crypto.service.js" />
+        <option value="$PROJECT_DIR$/src/crypto/crypto.controller.js" />
         <option value="$PROJECT_DIR$/src/crypto/logs.txt" />
       </list>
     </option>
@@ -92,6 +132,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -110,16 +151,10 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="crypto" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="crypto-convert-api" type="b2602c69:ProjectViewProjectNode" />
-              <item name="crypto-convert-api" type="462c0819:PsiDirectoryNode" />
-              <item name="tests" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -369,11 +404,13 @@
       <workItem from="1554130784189" duration="578000" />
       <workItem from="1554185216074" duration="26780000" />
       <workItem from="1554271462727" duration="1811000" />
+      <workItem from="1554274733091" duration="22367000" />
+      <workItem from="1554357976053" duration="26988000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="132928000" />
+    <option name="totallyTimeSpent" value="182400000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -388,7 +425,7 @@
     <frame x="67" y="27" width="1853" height="1053" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24972677" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13661203" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -400,7 +437,7 @@
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32890365" />
       <window_info anchor="bottom" id="Docker" order="7" weight="0.08527132" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32890365" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49945354" visible="true" weight="0.27906978" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.49945354" visible="true" weight="0.27353266" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50054646" side_tool="true" weight="0.33001107" />
       <window_info anchor="bottom" id="TypeScript" order="11" weight="0.32890365" />
       <window_info anchor="bottom" id="REST Client" order="12" weight="0.4108527" />
@@ -409,22 +446,22 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
     <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24972677" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13661203" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="TypeScript" order="0" />
-      <window_info anchor="bottom" id="REST Client" order="1" weight="0.4108527" />
-      <window_info anchor="bottom" id="Message" order="2" />
-      <window_info anchor="bottom" id="Find" order="3" weight="0.32890365" />
-      <window_info anchor="bottom" id="Run" order="4" weight="0.32890365" />
-      <window_info anchor="bottom" id="Debug" order="5" weight="0.39977852" />
-      <window_info anchor="bottom" id="Cvs" order="6" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="7" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="8" />
-      <window_info anchor="bottom" id="Docker" order="9" weight="0.08527132" />
-      <window_info anchor="bottom" id="Version Control" order="10" weight="0.32890365" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.49945354" visible="true" weight="0.27906978" />
-      <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.50054646" side_tool="true" weight="0.33001107" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32890365" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32890365" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39977852" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32890365" />
+      <window_info anchor="bottom" id="Docker" order="7" weight="0.08527132" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32890365" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49945354" visible="true" weight="0.14396456" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50054646" side_tool="true" weight="0.33001107" />
+      <window_info anchor="bottom" id="TypeScript" order="11" weight="0.32890365" />
+      <window_info anchor="bottom" id="REST Client" order="12" weight="0.4108527" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -434,13 +471,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="1" selection-start-column="1" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/unit.test.js" />
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
@@ -449,13 +479,6 @@
             <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
           </first_editor>
           <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="31" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="31" />
         </state>
       </provider>
     </entry>
@@ -489,13 +512,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/logs.txt" />
-    <entry file="file://$PROJECT_DIR$/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/tests/logs.test.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="566">
@@ -524,17 +540,91 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="1" selection-start-column="1" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/redis/lib/createClient.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/redis/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1321">
+          <caret line="1087" column="36" lean-forward="true" selection-start-line="1087" selection-start-column="36" selection-end-line="1087" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/redis/lib/individualCommands.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="354" selection-start-line="354" selection-end-line="354" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/javascript/nodejs/10.15.1/node-typings/node_modules/@types/node/fs.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="386" column="13" selection-start-line="386" selection-start-column="13" selection-end-line="386" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/bluebird/js/release/promise.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="113" selection-start-line="113" selection-end-line="113" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="31" selection-start-line="7" selection-start-column="22" selection-end-line="7" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/crypto/crypto.controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="30" column="56" lean-forward="true" selection-start-line="30" selection-start-column="56" selection-end-line="30" selection-end-column="56" />
+        <state relative-caret-position="75">
+          <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
+          <folding>
+            <element signature="e#90#512#0" />
+            <element signature="e#558#972#0" />
+            <element signature="e#1005#1154#0" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/crypto/crypto.service.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="46">
-          <caret line="112" column="19" lean-forward="true" selection-start-line="112" selection-start-column="19" selection-end-line="112" selection-end-column="19" />
+        <state relative-caret-position="306">
+          <caret line="63" column="2" lean-forward="true" selection-start-line="63" selection-start-column="2" selection-end-line="63" selection-end-column="2" />
+          <folding>
+            <element signature="e#309#348#0" />
+            <element signature="e#378#413#0" />
+            <element signature="e#430#462#0" />
+            <element signature="e#632#950#0" />
+            <element signature="e#1120#1510#0" />
+            <element signature="e#1630#1994#0" />
+            <element signature="e#2987#3426#0" />
+            <element signature="e#3896#3989#0" />
+            <element signature="e#4093#4485#0" />
+            <element signature="e#4013#4123#0" />
+            <element signature="e#4247#4487#0" />
+          </folding>
         </state>
       </provider>
     </entry>

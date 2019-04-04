@@ -5,14 +5,16 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-      "test": "jest --forceExit",
+    "test": "jest --forceExit",
     "dev": "nodemon"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.4",
+    "bluebird": "^3.5.4",
     "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "redis": "^2.8.0",
     "request": "^2.88.0",
     "request-promise": "^4.2.4"
   },

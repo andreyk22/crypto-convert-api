@@ -2,6 +2,18 @@ const request = require('request');
 const path = require('path');
 const requestPromise = require('request-promise');
 const fs = require('fs');
+const redis = require('redis');
+
+const client = redis.createClient();
+
+client.on('connect', () => {
+	console.log(`connected to redis`);
+});
+
+client.on('error', err => {
+	console.log(`Error: ${err}`);
+
+});
 
 const query = {
 	currency: 'ETH',
@@ -52,53 +64,7 @@ const cryptoConvertPromise = (query) => {
 };
 
 /**
- * Function with promises that logs every 5s
- * current value of ETH in Euros along with current date and time.
- * It logs to logs.txt file.
- */
-const logCurrentValuePromise = () =>
-	setInterval(() => cryptoConvertPromise(query)
-			.then((res) => appendToFile(null, res))
-			.catch(appendToFile), 5 * 1000);
-
-/**
- * Function with callbacks that logs every 2s
- * current value of ETH in Euros along with current date and time.
- * It logs to logs.txt file.
- */
-const logCurrentValueCb = () => setInterval(() => cryptoConvertCb(query, appendToFile), 2 * 1000);
-
-/**
- * Function that returns logs to JSON
- * based on query params (limit, start)
- * It uses paginate function
- */
-const getLogs = (query, callback) => {
-	const filePath = path.normalize(path.resolve(__dirname, 'logs.txt'));
-
-	fs.readFile(filePath, (err, content) => {
-		if (err) {
-			return callback(err)
-		}
-
-		const logs = {total: 0, logs: []}
-		logs.logs = Buffer.from(content)
-			.toString()
-			.split('\n')
-			.filter(e => e)
-			.map((e) => JSON.parse(e));
-		logs.total = logs.logs.length
-
-		if (isNaN(query.limit) && isNaN(query.start)) {
-			return callback(null, logs);
-		}
-
-		return callback(null, paginate(logs.logs, query.limit, query.start))
-	})
-};
-
-/**
- * Function that actually appendToFile
+ * Function that actually append logs to file
  * and its called in logCurrentValuePromise and logCurrentValueCb
  * It logs to logs.txt file.
  */
@@ -122,14 +88,168 @@ const appendToFile = (err, res) => {
 		}
 		console.info('logging')
 	});
+};
+
+/**
+ * Function with promises that logs every 5s
+ * current value of ETH in Euros along with current date and time.
+ * It logs to logs.txt file.
+ */
+const logCurrentValuePromise = () =>
+	setInterval(() => cryptoConvertPromise(query)
+		.then((res) => appendToFile(null, res))
+		.catch(appendToFile), 60 * 1000);
+
+/**
+ * Function with callbacks that logs every 2s
+ * current value of ETH in Euros along with current date and time.
+ * It logs to logs.txt file.
+ */
+const logCurrentValueCb = () =>
+	setInterval(() => cryptoConvertCb(query, appendToFile), 120 * 1000);
+
+/**
+ * Checks if lastModified key exists in redis
+ * if does not exist, returns false
+ * if there is a key, and is equal to fileLastModified, returns true,
+ * else it will be false.
+ */
+const getAndCheckValue = (filepath) => {
+
+	const fileLastModified = fs.statSync(filepath).mtime.toISOString();
+
+	return new Promise((resolve, reject) => {
+
+		client.exists('lastModified', (err, lastModified) => {
+			if (err || !lastModified) {
+				return reject(null, false);
+			}
+
+			client.get('lastModified', (err, redisLastModified) => {
+				if (err) {
+					return reject(null, false);
+				}
+
+				return resolve(redisLastModified === fileLastModified);
+			})
+
+		});
+
+	});
+
+};
+
+/**
+ * Helper function that check if redis is up to date with logs.txt
+ */
+const updated = (filepath) => {
+
+	return getAndCheckValue(filepath)
+		.then((res) => res)
+		.catch((err) => err.message);
+};
+
+/**
+ * Get data from redis
+ */
+const getRedisData = () => {
+	return new Promise((resolve, reject) => {
+
+		let array = {total: 0, logs: []}
+
+		client.get('total', (err, total) => {
+			if (err) {
+
+				return reject(err);
+			}
+
+			const totalParsed = JSON.parse(total);
+			array.total = totalParsed;
+
+			client.get('logs', (err, logs) => {
+				if (err) {
+					return reject(err);
+				}
+
+				const parsedLogs = JSON.parse(logs)
+				array.logs = parsedLogs;
+
+				return resolve(array)
+			})
+		})
+	})
+};
+
+/**
+ * Helper function that converts buffer to JSON
+ */
+const bufferToJSON = (content) => {
+	return Buffer.from(content)
+		.toString()
+		.split('\n')
+		.filter((e) => e)
+		.map((e) => JSON.parse(e))
+};
+
+/**
+ * Converts content form logs.txt to json and updates redis.
+ */
+const updateRedis = (content, fileLastModified) => {
+	const logs = {total: 0, logs: []}
+	logs.logs = bufferToJSON(content)
+	logs.total = logs.logs.length
+
+	client.set('total', logs.logs.length);
+	client.set('lastModified', fileLastModified);
+	client.set('logs', JSON.stringify(logs.logs));
 }
 
 /**
  * Simple helper function thats used in getLogs
  * to return logs based on query params.
  */
-const paginate = (array, page_size = 5, page_number = 0) =>
+const paginate = (array, page_size = 5, page_number = 1) =>
 	array.slice((page_number - 1) * page_size, page_number * page_size);
+
+/**
+ * Function that returns logs from to JSON
+ * based on query params (limit, start)
+ * It uses paginate function
+ */
+const getLogs = async (query, callback) => {
+	const filePath = path.normalize(path.resolve(__dirname, 'logs.txt'));
+	const fileLastModified = fs.statSync(filePath).mtime.toISOString();
+
+	const isUpdated = await updated(filePath);
+
+	if (isUpdated) {
+		return getRedisData()
+			.then(res => {
+				if (isNaN(query.limit) && isNaN(query.start)) {
+					return callback(null, res);
+				}
+
+				return callback(null, paginate(res.logs, query.limit, query.start))
+			}).catch(err => err)
+	}
+	fs.readFile(filePath, (err, content) => {
+		if (err) {
+			return callback(err)
+		}
+
+		updateRedis(content, fileLastModified);
+
+		return getRedisData()
+			.then(res => {
+				if (isNaN(query.limit) && isNaN(query.start)) {
+
+					return callback(null, res);
+				}
+
+				return callback(null, paginate(res.logs, query.limit, query.start))
+			}).catch(err => err)
+	})
+};
 
 module.exports = {
 	cryptoConvertCb,

@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c9249140-5e0d-442e-ab95-7dcf285250ee" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/crypto/crypto.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/crypto/crypto.controller.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/crypto/crypto.service.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/crypto/crypto.service.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/crypto/logs.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/crypto/logs.txt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -26,11 +19,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/crypto/crypto.controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
+            <state relative-caret-position="60">
+              <caret line="19" column="43" lean-forward="true" selection-start-line="19" selection-start-column="43" selection-end-line="19" selection-end-column="43" />
               <folding>
                 <element signature="e#90#512#0" />
-                <element signature="e#558#972#0" />
                 <element signature="e#1005#1154#0" />
               </folding>
             </state>
@@ -40,17 +32,14 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/crypto/crypto.service.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="63" column="2" lean-forward="true" selection-start-line="63" selection-start-column="2" selection-end-line="63" selection-end-column="2" />
+            <state relative-caret-position="205">
+              <caret line="220" lean-forward="true" selection-start-line="220" selection-end-line="220" />
               <folding>
                 <element signature="e#309#348#0" />
                 <element signature="e#378#413#0" />
                 <element signature="e#430#462#0" />
                 <element signature="e#632#950#0" />
-                <element signature="e#1120#1510#0" />
                 <element signature="e#1630#1994#0" />
-                <element signature="e#2987#3426#0" />
-                <element signature="e#3896#3989#0" />
                 <element signature="e#4093#4485#0" />
                 <element signature="e#4013#4123#0" />
                 <element signature="e#4247#4487#0" />
@@ -114,8 +103,8 @@
         <option value="$PROJECT_DIR$/tests/logs.test.js" />
         <option value="$PROJECT_DIR$/tests/crypto.test.js" />
         <option value="$PROJECT_DIR$/index.js" />
-        <option value="$PROJECT_DIR$/src/crypto/crypto.service.js" />
         <option value="$PROJECT_DIR$/src/crypto/crypto.controller.js" />
+        <option value="$PROJECT_DIR$/src/crypto/crypto.service.js" />
         <option value="$PROJECT_DIR$/src/crypto/logs.txt" />
       </list>
     </option>
@@ -405,12 +394,12 @@
       <workItem from="1554185216074" duration="26780000" />
       <workItem from="1554271462727" duration="1811000" />
       <workItem from="1554274733091" duration="22367000" />
-      <workItem from="1554357976053" duration="26988000" />
+      <workItem from="1554357976053" duration="27574000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="182400000" />
+    <option name="totallyTimeSpent" value="182986000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -598,11 +587,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/crypto/crypto.controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="32" lean-forward="true" selection-start-line="32" selection-end-line="32" />
+        <state relative-caret-position="60">
+          <caret line="19" column="43" lean-forward="true" selection-start-line="19" selection-start-column="43" selection-end-line="19" selection-end-column="43" />
           <folding>
             <element signature="e#90#512#0" />
-            <element signature="e#558#972#0" />
             <element signature="e#1005#1154#0" />
           </folding>
         </state>
@@ -610,17 +598,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/crypto/crypto.service.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="63" column="2" lean-forward="true" selection-start-line="63" selection-start-column="2" selection-end-line="63" selection-end-column="2" />
+        <state relative-caret-position="205">
+          <caret line="220" lean-forward="true" selection-start-line="220" selection-end-line="220" />
           <folding>
             <element signature="e#309#348#0" />
             <element signature="e#378#413#0" />
             <element signature="e#430#462#0" />
             <element signature="e#632#950#0" />
-            <element signature="e#1120#1510#0" />
             <element signature="e#1630#1994#0" />
-            <element signature="e#2987#3426#0" />
-            <element signature="e#3896#3989#0" />
             <element signature="e#4093#4485#0" />
             <element signature="e#4013#4123#0" />
             <element signature="e#4247#4487#0" />

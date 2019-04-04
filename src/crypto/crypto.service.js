@@ -114,10 +114,7 @@ const logCurrentValueCb = () =>
  * if there is a key, and is equal to fileLastModified, returns true,
  * else it will be false.
  */
-const getAndCheckValue = (filepath) => {
-
-	const fileLastModified = fs.statSync(filepath).mtime.toISOString();
-
+const getAndCheckValue = (filepath, fileLastModified) => {
 	return new Promise((resolve, reject) => {
 
 		client.exists('lastModified', (err, lastModified) => {
@@ -142,9 +139,9 @@ const getAndCheckValue = (filepath) => {
 /**
  * Helper function that check if redis is up to date with logs.txt
  */
-const updated = (filepath) => {
+const updated = (filepath, fileLastModified) => {
 
-	return getAndCheckValue(filepath)
+	return getAndCheckValue(filepath, fileLastModified)
 		.then((res) => res)
 		.catch((err) => err.message);
 };
@@ -220,7 +217,7 @@ const getLogs = async (query, callback) => {
 	const filePath = path.normalize(path.resolve(__dirname, 'logs.txt'));
 	const fileLastModified = fs.statSync(filePath).mtime.toISOString();
 
-	const isUpdated = await updated(filePath);
+	const isUpdated = await updated(filePath, fileLastModified);
 
 	if (isUpdated) {
 		return getRedisData()

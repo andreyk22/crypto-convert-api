@@ -32,7 +32,7 @@ const cryptoConvertPromise = (req, res) => {
 };
 
 const getLogs = (req, res) => {
-	cryptoService.getLogs(req.query, (err, content) => {
+	cryptoService.getLogs(req, (err, content) => {
 		if (err) {
 			return res.json({error: err.message}).status(400);
 		}

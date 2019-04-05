@@ -20,8 +20,8 @@ const start = () => {
     res.status(404).send({url: req.originalUrl + " not found"});
   });
 
- cryptoService.logCurrentValueCb();
- cryptoService.logCurrentValuePromise();
+cryptoService.logCurrentValueCb();
+cryptoService.logCurrentValuePromise();
 
   return app.listen(port, () => console.log("Listening on port: " + port));
 };

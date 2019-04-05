@@ -153,27 +153,18 @@ const getRedisData = () => {
 	return new Promise((resolve, reject) => {
 
 		let array = {total: 0, logs: []}
-
-		client.get('total', (err, total) => {
-			if (err) {
-
-				return reject(err);
-			}
-
-			const totalParsed = JSON.parse(total);
-			array.total = totalParsed;
-
 			client.get('logs', (err, logs) => {
 				if (err) {
+
 					return reject(err);
 				}
 
 				const parsedLogs = JSON.parse(logs)
 				array.logs = parsedLogs;
+				array.total = array.logs.length
 
 				return resolve(array)
 			})
-		})
 	})
 };
 
@@ -205,15 +196,33 @@ const updateRedis = (content, fileLastModified) => {
  * Simple helper function thats used in getLogs
  * to return logs based on query params.
  */
-const paginate = (array, page_size = 5, page_number = 1) =>
-	array.slice((page_number - 1) * page_size, page_number * page_size);
+const paginate = (req, array, page_size = 5, page_number = 1) => {
+	const numberOfPages = Math.ceil(array.logs.length / page_size);
+	const previous = page_number > 1 ? parseInt(page_number) - 1 : 1;
+	const next = page_number < numberOfPages ? parseInt(page_number) + 1 : 1;
+
+	array.logs = array.logs.slice((page_number - 1) * page_size, page_number * page_size);
+
+	if (page_number > numberOfPages) {
+		return array;
+	}
+	array.pagination = {
+		'total_pages': numberOfPages,
+		'current_page': parseInt(page_number),
+		'previous': previous,
+		'next': next
+	};
+
+	return array;
+}
+
 
 /**
  * Function that returns logs from to JSON
  * based on query params (limit, start)
  * It uses paginate function
  */
-const getLogs = async (query, callback) => {
+const getLogs = async (req, callback) => {
 	const filePath = path.normalize(path.resolve(__dirname, 'logs.txt'));
 	const fileLastModified = fs.statSync(filePath).mtime.toISOString();
 
@@ -222,11 +231,11 @@ const getLogs = async (query, callback) => {
 	if (isUpdated) {
 		return getRedisData()
 			.then(res => {
-				if (isNaN(query.limit) && isNaN(query.start)) {
-					return callback(null, res);
+				if (isNaN(req.query.limit) && isNaN(req.query.start)) {
+					return callback(null, paginate(req, res));
 				}
 
-				return callback(null, paginate(res.logs, query.limit, query.start))
+				return callback(null, paginate(req, res, req.query.limit, req.query.start))
 			}).catch(err => err)
 	}
 	fs.readFile(filePath, (err, content) => {
@@ -238,12 +247,12 @@ const getLogs = async (query, callback) => {
 
 		return getRedisData()
 			.then(res => {
-				if (isNaN(query.limit) && isNaN(query.start)) {
+				if (isNaN(req.query.limit) && isNaN(query.start)) {
 
-					return callback(null, res);
+					return callback(null, paginate(req, res));
 				}
 
-				return callback(null, paginate(res.logs, query.limit, query.start))
+				return callback(null, paginate(req, res, req.query.limit, req.query.start))
 			}).catch(err => err)
 	})
 };

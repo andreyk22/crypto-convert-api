@@ -153,18 +153,18 @@ const getRedisData = () => {
 	return new Promise((resolve, reject) => {
 
 		let array = {total: 0, logs: []}
-			client.get('logs', (err, logs) => {
-				if (err) {
+		client.get('logs', (err, logs) => {
+			if (err) {
 
-					return reject(err);
-				}
+				return reject(err);
+			}
 
-				const parsedLogs = JSON.parse(logs)
-				array.logs = parsedLogs;
-				array.total = array.logs.length
+			const parsedLogs = JSON.parse(logs)
+			array.logs = parsedLogs;
+			array.total = array.logs.length
 
-				return resolve(array)
-			})
+			return resolve(array)
+		})
 	})
 };
 

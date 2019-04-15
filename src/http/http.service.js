@@ -1,5 +1,8 @@
 const axios = require('axios');
 
+/**
+ * Get request to passed url
+ */
 const get = (url) => {
 	return axios.get(url)
 		.then((response) => {

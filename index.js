@@ -1,7 +1,7 @@
-require('dotenv').config()
+require('dotenv').config();
+
 const bodyParser = require("body-parser");
 const express = require("express");
-
 
 const cryptoController = require("./src/crypto/crypto.controller");
 const cryptoService = require("./src/crypto/crypto.service");

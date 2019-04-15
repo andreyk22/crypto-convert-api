@@ -26,6 +26,5 @@ const getLogs = (req, res) => {
 
 module.exports = {
 	cryptoConvert,
-	cryptoConvert,
 	getLogs
 };

@@ -41,8 +41,7 @@ const cryptoConvert = (query) => {
  * It logs to logs.txt file.
  */
 const appendToFile = (err, res) => {
-	const filePath = path.normalize(path.resolve(__dirname, 'logs.txt'));
-
+	const filePath = '/tmp/logs.txt';
 	if (err) {
 		console.warn(err.message);
 		return;
@@ -116,16 +115,16 @@ const updated = (filepath, fileLastModified) => {
 const getRedisData = () => {
 	return new Promise((resolve, reject) => {
 
-		let array = {total: 0, logs: []}
+		let array = {total: 0, logs: []};
 		client.get('logs', (err, logs) => {
 			if (err) {
 
 				return reject(err);
 			}
 
-			const parsedLogs = JSON.parse(logs)
+			const parsedLogs = JSON.parse(logs);
 			array.logs = parsedLogs;
-			array.total = array.logs.length
+			array.total = array.logs.length;
 
 			return resolve(array)
 		})
@@ -147,14 +146,14 @@ const bufferToJSON = (content) => {
  * Converts content form logs.txt to json and updates redis.
  */
 const updateRedis = (content, fileLastModified) => {
-	const logs = {total: 0, logs: []}
-	logs.logs = bufferToJSON(content)
-	logs.total = logs.logs.length
+	const logs = {total: 0, logs: []};
+	logs.logs = bufferToJSON(content);
+	logs.total = logs.logs.length;
 
 	client.set('total', logs.logs.length);
 	client.set('lastModified', fileLastModified);
 	client.set('logs', JSON.stringify(logs.logs));
-}
+};
 
 /**
  * Simple helper function thats used in getLogs
@@ -178,7 +177,7 @@ const paginate = (req, array, page_size = 5, page_number = 1) => {
 	};
 
 	return array;
-}
+};
 
 /**
  * Function that returns logs from to JSON
@@ -186,7 +185,7 @@ const paginate = (req, array, page_size = 5, page_number = 1) => {
  * It uses paginate function
  */
 const getLogs = async (req, callback) => {
-	const filePath = path.normalize(path.resolve(__dirname, 'logs.txt'));
+	const filePath = '/tmp/logs.txt';
 	const fileLastModified = fs.statSync(filePath).mtime.toISOString();
 
 	const isUpdated = await updated(filePath, fileLastModified);

@@ -28,17 +28,13 @@ Run:
 
 ## Usage
 
-- Callbacks and request lib are used for first one.
+- Pass currency and amount query params.
 
  ```http://localhost:3000/convert?currency=ETH&amount=1```
-
-- Promises and request-promise lib are used for second one.
-
- ```http://localhost:3000/convert/promise?currency=ETH&amount=1```
  
 - ETH value logs feature. 
     
-    Logging function written using callbacks logs every 120s, and function written using promises logs every 60s
+    Logs every 60s
     
    * Get all logs:
 

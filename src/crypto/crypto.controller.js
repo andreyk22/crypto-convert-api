@@ -22,7 +22,7 @@ const cryptoConvertPromise = (req, res) => {
 		return res.json({error: 'Currency parameter is required.'}).status(400);
 	}
 
-	if (!req.query.amount || isNaN(req.query.amount) !== 'number') {
+	if (!req.query.amount || isNaN(req.query.amount)) {
 		return res.json({error: 'Amount parameter is required and must be a number'}).status(400);
 	}
 

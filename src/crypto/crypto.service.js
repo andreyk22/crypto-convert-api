@@ -1,10 +1,11 @@
-const request = require('request');
+require('dotenv').config();
+const axios = require('axios');
 const path = require('path');
-const requestPromise = require('request-promise');
 const fs = require('fs');
 const redis = require('redis');
 
-const client = redis.createClient();
+
+const client = redis.createClient(process.env.REDIS_PORT, process.env.HOST);
 
 client.on('connect', () => {
 	console.log(`connected to redis`);
@@ -28,15 +29,17 @@ const query = {
 const cryptoConvertCb = (query, cb) => {
 	const url = `https://min-api.cryptocompare.com/data/price?fsym=${query.currency}&tsyms=EUR`;
 
-	return request(url, (error, response, body) => {
-		const apiRes = JSON.parse(body);
+	return axios.get(url)
+		.then((response) => {
+			if (response.data.Response === 'Error') {
+				return cb(response.data.Message);
+			}
 
-		if (apiRes.Response === 'Error') {
-			return cb(apiRes.Message);
-		} else {
-			return cb(null, apiRes.EUR * query.amount);
-		}
-	});
+			cb(null, response.data.EUR * query.amount)
+		})
+		.catch( (error) => {
+			cb(error);
+		});
 };
 
 /**
@@ -47,19 +50,16 @@ const cryptoConvertCb = (query, cb) => {
 const cryptoConvertPromise = (query) => {
 	const url = `https://min-api.cryptocompare.com/data/price?fsym=${query.currency}&tsyms=EUR`;
 
-	const options = {
-		uri: url,
-		headers: {
-			'User-Agent': 'Request-Promise'
-		},
-		json: true
-	};
-	return requestPromise(options)
-		.then((data) => {
-			if (data.Response === 'Error') {
-				return Promise.reject(data.Message);
+	return axios.get(url)
+		.then((response) => {
+			if(response.data.Response === 'Error') {
+				return Promise.reject(response.data.Message);
 			}
-			return Promise.resolve(data.EUR * query.amount);
+
+			return Promise.resolve(response.data.EUR * query.amount);
+		})
+		.catch((error) => {
+			return Promise.reject(error);
 		})
 };
 
@@ -91,7 +91,7 @@ const appendToFile = (err, res) => {
 };
 
 /**
- * Function with promises that logs every 5s
+ * Function with promises that logs every minute
  * current value of ETH in Euros along with current date and time.
  * It logs to logs.txt file.
  */
@@ -101,7 +101,7 @@ const logCurrentValuePromise = () =>
 		.catch(appendToFile), 60 * 1000);
 
 /**
- * Function with callbacks that logs every 2s
+ * Function with callbacks that logs every 2min
  * current value of ETH in Euros along with current date and time.
  * It logs to logs.txt file.
  */
@@ -215,7 +215,6 @@ const paginate = (req, array, page_size = 5, page_number = 1) => {
 
 	return array;
 }
-
 
 /**
  * Function that returns logs from to JSON

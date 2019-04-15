@@ -1,6 +1,31 @@
 # crypto-convert-api
 Simple node js api for converting cryptocurrencies to EUR.
 
+## Installing
+
+To run project you will need Redis installed. 
+
+Run dockerized Redis:
+
+```docker pull redis```
+
+```docker run --name some-redis -d redis```
+
+
+Clone:
+
+``` git clone https://github.com/andreyk22/crypto-convert-api.git```
+
+Install:
+
+```npm install```
+
+In ```.env``` specify ```REDIS_PORT``` and ```REDIS_HOST```.
+
+Run:
+
+```npm start```
+
 ## Usage
 
 - Callbacks and request lib are used for first one.
@@ -13,7 +38,7 @@ Simple node js api for converting cryptocurrencies to EUR.
  
 - ETH value logs feature. 
     
-    Logging function written using callbacks logs every 25s, and function written using promises logs every 60s
+    Logging function written using callbacks logs every 120s, and function written using promises logs every 60s
     
    * Get all logs:
 
@@ -27,20 +52,6 @@ Simple node js api for converting cryptocurrencies to EUR.
     
     ```http://localhost:3000/logs?limit=5&start=1```
 
-## Installing
-
-Clone:
-
-``` git clone https://github.com/andreyk22/crypto-convert-api.git```
-
-Install:
-
-```npm install```
-
-Run:
-
-```npm start```
-
 ## Dependencies
 
 - [nodemon](https://www.npmjs.com/package/nodemon)
@@ -49,9 +60,7 @@ Run:
 
 - [body-parser](https://www.npmjs.com/package/body-parser)
 
-- [request](https://www.npmjs.com/package/request)
-
-- [request-promise](https://www.npmjs.com/package/request-promise)
+- [axios](https://www.npmjs.com/package/axios)
 
 - [jest](https://www.npmjs.com/package/jest)
 

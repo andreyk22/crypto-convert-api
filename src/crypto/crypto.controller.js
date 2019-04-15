@@ -1,6 +1,6 @@
 const cryptoService = require("./crypto.service");
 
-const cryptoConvertCb = (req, res) => {
+const cryptoConvert = (req, res) => {
 	if (!req.query.currency) {
 		return res.json({error: 'Currency parameter is required.'}).status(400);
 	}
@@ -9,24 +9,7 @@ const cryptoConvertCb = (req, res) => {
 		return res.json({error: 'Amount parameter is required and must be a number'}).status(400);
 	}
 
-	cryptoService.cryptoConvertCb(req.query, (err, response) => {
-		if (err) {
-			return res.json({'error:': err}).status(400);
-		}
-		return res.json({'price': response}).status(200);
-	});
-};
-
-const cryptoConvertPromise = (req, res) => {
-	if (!req.query.currency) {
-		return res.json({error: 'Currency parameter is required.'}).status(400);
-	}
-
-	if (!req.query.amount || isNaN(req.query.amount)) {
-		return res.json({error: 'Amount parameter is required and must be a number'}).status(400);
-	}
-
-	cryptoService.cryptoConvertPromise(req.query)
+	cryptoService.cryptoConvert(req.query)
 		.then(response => res.json({'price': response}).status(200))
 		.catch(err => res.json({'error': err}).status(400));
 };
@@ -42,7 +25,7 @@ const getLogs = (req, res) => {
 };
 
 module.exports = {
-	cryptoConvertCb,
-	cryptoConvertPromise,
+	cryptoConvert,
+	cryptoConvert,
 	getLogs
 };

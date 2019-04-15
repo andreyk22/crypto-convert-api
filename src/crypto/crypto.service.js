@@ -1,9 +1,10 @@
 require('dotenv').config();
-const axios = require('axios');
+
 const path = require('path');
 const fs = require('fs');
 const redis = require('redis');
 
+const http = require("../http/http.service");
 
 const client = redis.createClient(process.env.REDIS_PORT, process.env.HOST);
 
@@ -22,50 +23,21 @@ const query = {
 };
 
 /**
- * Function with callbacks which gets
- * current value of passed cryptocurrency in Euros.
- * It uses cryptocompare api.
- */
-const cryptoConvertCb = (query, cb) => {
-	const url = `https://min-api.cryptocompare.com/data/price?fsym=${query.currency}&tsyms=EUR`;
-
-	return axios.get(url)
-		.then((response) => {
-			if (response.data.Response === 'Error') {
-				return cb(response.data.Message);
-			}
-
-			cb(null, response.data.EUR * query.amount)
-		})
-		.catch( (error) => {
-			cb(error);
-		});
-};
-
-/**
  * Function with promises which gets
  * current value of passed cryptocurrency in Euros.
  * It uses cryptocompare api.
  */
-const cryptoConvertPromise = (query) => {
+const cryptoConvert = (query) => {
 	const url = `https://min-api.cryptocompare.com/data/price?fsym=${query.currency}&tsyms=EUR`;
 
-	return axios.get(url)
-		.then((response) => {
-			if(response.data.Response === 'Error') {
-				return Promise.reject(response.data.Message);
-			}
-
-			return Promise.resolve(response.data.EUR * query.amount);
-		})
-		.catch((error) => {
-			return Promise.reject(error);
-		})
+	return http.get(url)
+		.then(res => res.EUR * query.amount)
+		.catch(err => err);
 };
 
 /**
  * Function that actually append logs to file
- * and its called in logCurrentValuePromise and logCurrentValueCb
+ * and its called in logCurrentValue
  * It logs to logs.txt file.
  */
 const appendToFile = (err, res) => {
@@ -95,18 +67,10 @@ const appendToFile = (err, res) => {
  * current value of ETH in Euros along with current date and time.
  * It logs to logs.txt file.
  */
-const logCurrentValuePromise = () =>
-	setInterval(() => cryptoConvertPromise(query)
+const logCurrentValue = () =>
+	setInterval(() => cryptoConvert(query)
 		.then((res) => appendToFile(null, res))
 		.catch(appendToFile), 60 * 1000);
-
-/**
- * Function with callbacks that logs every 2min
- * current value of ETH in Euros along with current date and time.
- * It logs to logs.txt file.
- */
-const logCurrentValueCb = () =>
-	setInterval(() => cryptoConvertCb(query, appendToFile), 120 * 1000);
 
 /**
  * Checks if lastModified key exists in redis
@@ -257,9 +221,7 @@ const getLogs = async (req, callback) => {
 };
 
 module.exports = {
-	cryptoConvertCb,
-	cryptoConvertPromise,
-	logCurrentValuePromise,
-	logCurrentValueCb,
+	cryptoConvert,
+	logCurrentValue,
 	getLogs
 };

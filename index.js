@@ -14,8 +14,7 @@ const start = () => {
   app.use(bodyParser.urlencoded({extended: true}));
   app.use(bodyParser.json());
 
-  app.get('/convert', cryptoController.cryptoConvertCb);
-  app.get('/convert/promise', cryptoController.cryptoConvertPromise);
+  app.get('/convert', cryptoController.cryptoConvert);
   app.get('/logs', cryptoController.getLogs);
 
   app.use((req, res) => {
@@ -23,8 +22,7 @@ const start = () => {
   });
 
 
-cryptoService.logCurrentValueCb();
-cryptoService.logCurrentValuePromise();
+cryptoService.logCurrentValue();
 
   return app.listen(port, () => console.log("Listening on port: " + port));
 };
